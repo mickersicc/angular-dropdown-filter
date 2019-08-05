@@ -46,17 +46,18 @@ export class AppComponent  {
   }
 
   public getAvailableStatuses(status: string): Status[] {
-    if (status === 'storeShipped') {
-      return [
-        {
-          value: 'storeShipped',
-          viewValue: 'Store Shipped'
-        },
-        { 
-          value: 'received', 
-          viewValue: 'Received'
-        }
-      ]
-    } else return this.statuses;
+    // if (status === 'storeShipped') {
+    //   return [
+    //     {
+    //       value: 'storeShipped',
+    //       viewValue: 'Store Shipped'
+    //     },
+    //     { 
+    //       value: 'received', 
+    //       viewValue: 'Received'
+    //     }
+    //   ]
+    // } else 
+    return this.statuses;
   }
 }
