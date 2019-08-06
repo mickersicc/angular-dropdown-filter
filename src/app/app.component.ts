@@ -33,12 +33,24 @@ export class AppComponent  {
     {
       value: 'working',
       viewValue: 'Working'
+    },
+    {
+      value: 'estimateApproved',
+      viewValue: 'Estimate approved'
+    },
+    {
+      value: 'awaitingParts',
+      viewValue: 'Awaiting Parts'
+    },
+    {
+      value: 'estimateRejected',
+      viewValue: 'Estimate rejected'
     }
   ];
   items: string[] = [
     'storeShipped',
-    'estimateAwaitingApproval',
-    'received',
+    'working',
+    'estimateApproved',
   ];
 
   public disbleOption(option: string): boolean {
@@ -46,6 +58,70 @@ export class AppComponent  {
   }
 
   public getAvailableStatuses(status: string): Status[] {
+    let statusArray: Status[] = [];
+
+    switch(status) {
+      case 'storeShipped':
+        statusArray = [
+          {
+            value: 'storeShipped',
+            viewValue: 'Store Shipped'
+          },
+          {
+            value: 'received',
+            viewValue: 'Received'
+          }
+        ]
+        console.log('storeShipped', statusArray);
+      case 'working':
+        statusArray = [
+          {
+            value: 'working',
+            viewValue: 'Working'
+          },
+          {
+            value: 'shippedCompleted',
+            viewValue: 'Shipped Completed'
+          },
+          {
+            value: 'shippedUnrepaired',
+            viewValue: 'Shipped Unrepaired'
+          }
+        ]
+      case 'estimateApproved':
+        statusArray = [
+          {
+            value: 'estimateApproved',
+            viewValue: 'Estimate approved'
+          },
+          {
+            value: 'working',
+            viewValue: 'Working'
+          },
+          {
+            value: 'awaitingParts',
+            viewValue: 'Awaiting Parts'
+          }
+        ]
+      case 'estimateRejected':
+        statusArray = [
+          {
+            value: 'estimateRejected',
+            viewValue: 'Estimate rejected'
+          },
+          {
+            value: 'working',
+            viewValue: 'Working'
+          },
+          {
+            value: 'awaitingParts',
+            viewValue: 'Awaiting Parts'
+          }
+        ]
+
+      default: console.log(status);
+    }
+    
     // if (status === 'storeShipped') {
     //   return [
     //     {
