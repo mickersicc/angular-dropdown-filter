@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 
 export interface Status {
   value: string;
@@ -55,6 +56,71 @@ export class AppComponent  {
 
   public disbleOption(option: string): boolean {
     return false;
+  }
+
+  public getAvailableStatuses$(status: string): Observable<Status[]> {
+    let statusArray: Status[] = [];
+
+    switch(status) {
+      case 'storeShipped':
+        statusArray = [
+          {
+            value: 'storeShipped',
+            viewValue: 'Store Shipped'
+          },
+          {
+            value: 'received',
+            viewValue: 'Received'
+          }
+        ]
+      case 'working':
+        statusArray = [
+          {
+            value: 'working',
+            viewValue: 'Working'
+          },
+          {
+            value: 'shippedCompleted',
+            viewValue: 'Shipped Completed'
+          },
+          {
+            value: 'shippedUnrepaired',
+            viewValue: 'Shipped Unrepaired'
+          }
+        ]
+      case 'estimateApproved':
+        statusArray = [
+          {
+            value: 'estimateApproved',
+            viewValue: 'Estimate approved'
+          },
+          {
+            value: 'working',
+            viewValue: 'Working'
+          },
+          {
+            value: 'awaitingParts',
+            viewValue: 'Awaiting Parts'
+          }
+        ]
+      case 'estimateRejected':
+        statusArray = [
+          {
+            value: 'estimateRejected',
+            viewValue: 'Estimate rejected'
+          },
+          {
+            value: 'working',
+            viewValue: 'Working'
+          },
+          {
+            value: 'awaitingParts',
+            viewValue: 'Awaiting Parts'
+          }
+        ]
+    }
+
+    return of(statusArray);
   }
 
   public getAvailableStatuses(status: string): Status[] {
@@ -121,19 +187,7 @@ export class AppComponent  {
 
       default: console.log(status);
     }
-    
-    // if (status === 'storeShipped') {
-    //   return [
-    //     {
-    //       value: 'storeShipped',
-    //       viewValue: 'Store Shipped'
-    //     },
-    //     { 
-    //       value: 'received', 
-    //       viewValue: 'Received'
-    //     }
-    //   ]
-    // } else 
+     
     return this.statuses;
   }
 }

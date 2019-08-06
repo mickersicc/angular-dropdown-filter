@@ -4,6 +4,6 @@
 <mat-form-field *ngFor="let item of items">
   <mat-label>Choose an option</mat-label>
   <mat-select [(ngModel)]="item">
-    <mat-option [value]="status.value" *ngFor="let status of getAvailableStatuses(item)" [disabled]="disbleOption(status.value)">{{ status.viewValue }}</mat-option>
+    <mat-option [value]="status.value" *ngFor="let status of getAvailableStatuses$(item) | async" [disabled]="disbleOption(status.value)">{{ status.viewValue }}</mat-option>
   </mat-select>
 </mat-form-field>
